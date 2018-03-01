@@ -77,11 +77,11 @@ def get_default_service_accounts():
                     alert = True
                     logger.warning('| Default Service Account "{0}" found in project "{1}"'.
                                    format(serviceaccount, project))
-        except KeyError:
-            logger.info('| 0 Service Accounts found in project "{0}"'.format(project))
+        except KeyError as err:
+            logger.info('| 0 Service Accounts found in project "{0}. {1}"'.format(project, err))
 
-        except Exception:
-            logger.error('| Default Service Account - Unknown error.  Please run manually')
+        except Exception as err:
+            logger.error('| Default Service Account - Unknown error.  Please run manually. {0}'.format(err))
 
     if alert is False:
         logger.info('| No Default Service Accounts found')
@@ -106,11 +106,11 @@ def get_default_vpc():
                     alert = True
                     logger.warning('| Default VPC Network "{0}" found in project "{1}"'.format(vpc, project_name))
 
-        except KeyError:
-            logger.info('| 0 VPCs found in project "{0}"'.format(project_name))
+        except KeyError as err:
+            logger.info('| 0 VPCs found in project "{0}". Err {1} '.format(project_name, err))
 
-        except Exception:
-            logger.error('| Default VPC Network - Unknown error in project "{0}".  Please run manually'.format(project_name))
+        except Exception as err:
+            logger.error('| Default VPC Network - Unknown error in project "{0}".  Please run manually. {1}'.format(project_name, err))
 
     if alert is False:
         logger.info('| No Default VPCs found')
@@ -148,11 +148,11 @@ def get_service_account_keys():
                             alert = True
                             logger.warning('| Service Account key is older than 180 days: {0}'.format(keyname))
 
-        except KeyError:
-            logger.info('| 0 Service Account keys found in project "{0}"'.format(project))
+        except KeyError as err:
+            logger.info('| 0 Service Account keys found in project "{0}". {1}'.format(project, err))
 
-        except Exception:
-            logger.error('| Service Account key - Unknown error.  Please run manually')
+        except Exception as err:
+            logger.error('| Service Account key - Unknown error.  Please run manually'.format(err))
 
     if alert is False:
         logger.info('| No Service Account Keys older than 180 days found')
@@ -205,11 +205,11 @@ def log_user_accounts():
                         else:
                             pass
 
-        except KeyError:
-            logger.info('| 0 User Accounts found in project "{0}"'.format(project))
+        except KeyError as err:
+            logger.info('| 0 User Accounts found in project "{0}"'.format(project, err))
 
-        except Exception:
-            logger.error('| Non-Organizational User Accounts - Unknown error.  Please run manually')
+        except Exception as err:
+            logger.error('| Non-Organizational User Accounts - Unknown error.  Please run manually. {0}'.format(err))
 
     if alert is False:
         logger.info('| No non-organizational users found')

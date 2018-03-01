@@ -13,17 +13,17 @@ if os.path.isfile(get_key()):
 
 
 def get_projects():
-    project_list = []
+    project_list = ["prod-176122"]
 
-    service = discovery.build('cloudresourcemanager', 'v1')
-    request = service.projects().list()
-    while request is not None:
-        response = request.execute()
-        for project in response['projects']:
-            if project['lifecycleState'] == 'ACTIVE':
-                project_list.append(project['projectId'])
-
-        request = service.projects().list_next(previous_request=request, previous_response=response)
+#    service = discovery.build('cloudresourcemanager', 'v1')
+#    request = service.projects().list()
+#    while request is not None:
+#        response = request.execute()
+#        for project in response['projects']:
+#            if project['lifecycleState'] == 'ACTIVE':
+#                project_list.append(project['projectId'])
+#
+#        request = service.projects().list_next(previous_request=request, previous_response=response)
 
     return project_list
 
